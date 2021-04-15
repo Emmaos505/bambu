@@ -36,11 +36,11 @@ const ToDos = () => {
     return (
         <div className="tarea_container" >
             {todos && todos.map(todo => {
-                let usuarioCorrespondiente = users.filter(user => user.id === todo.userId);
+                let usuarioCorrespondiente = users.find(user => user.id === todo.userId);
                 //console.log("haber", usuarioCorrespondiente);
                 return (
                     <div className="tarea">
-                        <p>{usuarioCorrespondiente[0] && usuarioCorrespondiente[0].name}</p>
+                        <p>{usuarioCorrespondiente && usuarioCorrespondiente.name}</p>
                         <p>{todo.title}</p>
                         <p>{`Estado: ${todo.completed}`}</p>
                     </div>
