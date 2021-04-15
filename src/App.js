@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import './App.css';
 
 
 function App() {
+
+    const history = useHistory();
 
     const [users, setUsers] = useState([]);
     const [searchUser, setSearchUser] = useState('');
@@ -19,6 +22,8 @@ function App() {
                 setLoading(false);
             })
             .catch(error => console.error(error))
+
+
     }, []);
 
 
@@ -35,6 +40,10 @@ function App() {
         const { value } = e.target;
         setSearchUser(value);
     };
+
+    const handleClick = () => {
+        history.push('/tareas');
+    }
 
     /* const handleSubmit = (e) => {
         e.preventDefault();
@@ -62,6 +71,9 @@ function App() {
                     ))}
                 </ul>
             }
+            <div className="btn_container">
+                <button onClick={handleClick} className="btn">Tareas</button>
+            </div>
         </div>
     )
 };
