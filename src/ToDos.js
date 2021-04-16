@@ -1,14 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import './App.css';
+import useTodos from './useTodos';
+import useUsers from './useUsers';
 
 const ToDos = () => {
 
 
-    const [todos, setToDos] = useState([]);
-    const [users, setUsers] = useState([]);
+    //const [todos, setToDos] = useState([]);
+    //const [users, setUsers] = useState([]);
+    //const { todos } = useTodos({ limit: 2 });
+    const { todos } = useTodos();
+    const { users } = useUsers();
 
 
-    useEffect(() => {
+    /* useEffect(() => {
         let primerasTareas = [];
         fetch('https://jsonplaceholder.typicode.com/todos/')
             .then(todos => todos.json())
@@ -21,14 +26,14 @@ const ToDos = () => {
             )
             .catch(error => console.error(error))
 
-        fetch('https://jsonplaceholder.typicode.com/users')
+         fetch('https://jsonplaceholder.typicode.com/users')
             .then(userList => userList.json())
             .then(userList => {
                 setUsers(userList);
 
             })
-            .catch(error => console.error(error))
-    }, []);
+            .catch(error => console.error(error)) 
+    }, []); */
 
 
 

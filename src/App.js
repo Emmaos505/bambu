@@ -1,31 +1,59 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import './App.css';
+import useUsers from './useUsers';
 
 
 function App() {
 
     const history = useHistory();
 
-    const [users, setUsers] = useState([]);
+    //const [users, setUsers] = useState([]);
     const [searchUser, setSearchUser] = useState('');
-    const [loading, setLoading] = useState(false);
+    //const [loading, setLoading] = useState(false);
     const [found, setFound] = useState([]);
+    const { users, loading } = useUsers();
+
+
+
+    /*     useEffect(() => {
+            setLoading(true);
+            fetch('https://jsonplaceholder.typicode.com/users')
+                .then(userList => userList.json())
+                .then(userList => {
+                    setUsers(userList);
+                    setFound(userList);
+                    setLoading(false);
+                })
+                .catch(error => console.error(error))
+    
+    
+        }, []); */
+
 
     useEffect(() => {
-        setLoading(true);
-        fetch('https://jsonplaceholder.typicode.com/users')
+
+        //setUsers(usuarios);
+        setFound(users);
+
+        /*  useUsers()
+         .then(users => console.log(users)) */
+
+
+
+
+        /* fetch('https://jsonplaceholder.typicode.com/users')
             .then(userList => userList.json())
             .then(userList => {
                 setUsers(userList);
                 setFound(userList);
                 setLoading(false);
             })
-            .catch(error => console.error(error))
+            .catch(error => console.error(error)) */
 
 
-    }, []);
-
+    }, [users]);
+    // sin esta dependencia no consologuea arriba
 
     useEffect(() => {
         if (searchUser) {
