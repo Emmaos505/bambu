@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 
 function useUsers({ id } = { id: '' }) {
 
     const [users, setUsers] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(false);
 
     useEffect(() => {
         fetch(`https://jsonplaceholder.typicode.com/users/${id}`)
@@ -12,14 +13,19 @@ function useUsers({ id } = { id: '' }) {
                 setUsers(userList);
                 setLoading(false);
             })
-            .catch(error => console.error(error))
+            .catch(error => {
+                console.error(error);
+                setLoading(false);
+                setError(error)
+            })
     }, []);
 
 
 
     return {
         loading,
-        users
+        users,
+        error
     }
 }
 

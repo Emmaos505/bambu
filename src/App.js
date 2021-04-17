@@ -8,52 +8,12 @@ function App() {
 
     const history = useHistory();
 
-    //const [users, setUsers] = useState([]);
+
     const [searchUser, setSearchUser] = useState('');
-    //const [loading, setLoading] = useState(false);
     const [found, setFound] = useState([]);
     const { users, loading } = useUsers();
 
 
-
-    /*     useEffect(() => {
-            setLoading(true);
-            fetch('https://jsonplaceholder.typicode.com/users')
-                .then(userList => userList.json())
-                .then(userList => {
-                    setUsers(userList);
-                    setFound(userList);
-                    setLoading(false);
-                })
-                .catch(error => console.error(error))
-    
-    
-        }, []); */
-
-
-    useEffect(() => {
-
-        //setUsers(usuarios);
-        setFound(users);
-
-        /*  useUsers()
-         .then(users => console.log(users)) */
-
-
-
-
-        /* fetch('https://jsonplaceholder.typicode.com/users')
-            .then(userList => userList.json())
-            .then(userList => {
-                setUsers(userList);
-                setFound(userList);
-                setLoading(false);
-            })
-            .catch(error => console.error(error)) */
-
-
-    }, [users]);
-    // sin esta dependencia no consologuea arriba
 
     useEffect(() => {
         if (searchUser) {
@@ -62,7 +22,7 @@ function App() {
         } else {
             setFound(users)
         }
-    }, [searchUser]);
+    }, [searchUser, users]);
 
     const handleChange = (e) => {
         const { value } = e.target;
@@ -73,15 +33,6 @@ function App() {
         history.push('/tareas');
     }
 
-    /* const handleSubmit = (e) => {
-        e.preventDefault();
-        if (searchUser) {
-            setLoading(true);
-            var usersFiltered = users.filter(user => user.name.toLowerCase().includes(searchUser.toLowerCase()));
-            setUsers(usersFiltered);
-            setLoading(false);
-        } else return;
-    } */
 
     return (
         <div>
